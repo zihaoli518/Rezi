@@ -12,13 +12,20 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
+
+
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Rezi
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -31,13 +38,51 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
+
+  const [statusMessage, setStatusMessage] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+
+
   const handleSubmit = (event) => {
+    handleOpen();
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+
+
+    let backendURL = '/api/signup';
+    if (process.env.NODE_ENV==='production') backendURL = 'hostedBackEnd' + backendURL;
+
+    fetch(backendURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json, text/plain',
+      },
+      body: JSON.stringify({username: data.get('email'), password: data.get('password'), type: 'customer'})
+    })
+      .then(data => data.json())
+      .then((data) => {
+        handleClose();
+        console.log('inside Signup.jsx submitHandler, ', data);
+        if (data.status === 'success') {
+          setStatusMessage(<Alert severity="success">Account successfully created</Alert>)
+        } else if (data.status === 'username already exists') {
+          setStatusMessage(<Alert severity="error">Username already exists</Alert>)
+        }
+      })
   };
 
   return (
@@ -102,12 +147,7 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+
             </Grid>
             <Button
               type="submit"
@@ -117,9 +157,12 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
+
+            {statusMessage}
+
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
@@ -127,6 +170,15 @@ export default function SignUp() {
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />
+
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+          // onClick={handleClose}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+        
       </Container>
     </ThemeProvider>
   );

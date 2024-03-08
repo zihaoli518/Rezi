@@ -6,9 +6,7 @@ const cors = require('cors');
 const PORT = 3000; 
 
 // const fetchMiddlewares = require('./controllers/fetchMiddlewares.js');
-// const userMiddlewares = require('./controllers/userMiddlewares.js');
-// const showdownMiddlewares = require('./controllers/showdownMiddlewares.js');
-// const convertTeamFormatMiddlewares = require('./controllers/convertTeamFormatMiddlewares.js')
+const userMiddlewares = require('./controllers/userMiddlewares.js');
 
 const cookieParser = require("cookie-parser");
 
@@ -77,6 +75,17 @@ app.get('/', (req, res) => {
   console.log('get/ complete')
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
+
+app.post('/api/signup', userMiddlewares.signUp, (req, res) => {
+  console.log('/api/signup complete', res.locals)
+  return res.status(200).send(res.locals.signUpData)
+})
+
+app.post('/api/login', userMiddlewares.logIn, (req, res) => {
+  console.log('/api/login complete');
+  console.log(res.locals)
+  return res.status(200).send(res.locals.logInData)
+})
 
 
 // app.post('/api/exportMon', convertTeamFormatMiddlewares.exportMon, (req, res) => {
