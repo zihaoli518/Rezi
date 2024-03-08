@@ -9,7 +9,7 @@ import {
 
 import SignInSide from './components/SignInSide.jsx';
 import SignUp from './components/SignUp.jsx';
-import LandingPage from './components/landingPage/LandingPage.js'
+import LandingPage from './components/landingPage/LandingPage.jsx';
 
 
 function App() {

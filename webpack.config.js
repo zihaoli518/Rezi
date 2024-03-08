@@ -12,6 +12,29 @@ const TerserPlugin = require('terser-webpack-plugin');
       path: path.resolve(__dirname, "./public"),
       filename: "bundle.js",
     },
+    resolve: {
+      alias: {
+      //   landingPage: path.resolve(__dirname, 'client/components/landingPage'),
+
+      // // Alias for the nested folders within the landingPage folder
+      // 'components': path.resolve(__dirname, 'client/components/landingPage/components'),
+      // 'layout': path.resolve(__dirname, 'client/components/landingPage/layout'),
+      // 'assets': path.resolve(__dirname, 'client/components/landingPage/assets'),
+      // 'pages': path.resolve(__dirname, 'client/components/landingPage/pages'),
+      // 'menu-items': path.resolve(__dirname, 'client/components/landingPage/menu-items'),
+      // 'store': path.resolve(__dirname, 'client/components/landingPage/store'),
+      // 'themes': path.resolve(__dirname, 'client/components/landingPage/themes'),
+      // 'utils': path.resolve(__dirname, 'client/components/landingPage/utils'),
+      // 'routes': path.resolve(__dirname, 'client/components/landingPage/routes')
+
+      // },
+      // fallback: {
+      //   "os": require.resolve("os-browserify/browser"),
+      //   "util": require.resolve("util/"),
+      //   "path": require.resolve("path-browserify"),
+      //   "fs": false // You can omit this line if your project doesn't use fs module
+      // }
+    },
     module: {
       rules: [
         {
@@ -38,7 +61,9 @@ const TerserPlugin = require('terser-webpack-plugin');
           use: {
             loader: "babel-loader",
             options: {
-              presets: ["@babel/preset-env", "@babel/preset-react"],
+              "presets": ["@babel/preset-env", ["@babel/preset-react", {
+                "runtime": "automatic"
+             }]],
             },
           },
         },
