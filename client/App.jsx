@@ -9,7 +9,7 @@ import {
 
 import SignInSide from './components/SignInSide.jsx';
 import SignUp from './components/SignUp.jsx';
-import LandingPage from './components/landingPage/LandingPage.js'
+// import LandingPage from './components/landingPage/LandingPage.js'
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/" element={<SignInSide />} />
         <Route exact path="/login" element={<SignInSide />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/landing" element={<LandingPage />} />
+        {/* <Route path="/landing" element={<LandingPage />} /> */}
       </Routes>
     </div>
   );
