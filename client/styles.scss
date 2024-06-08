@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+}
+
+.background-image-search-bar {
+  transition: filter 1s ease-in-out, opacity 1s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.blurred {
+  filter: blur(10px);
+  opacity: 0.5; /* Optional: Add opacity change if desired */
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar-container > * {
+  margin: 1% !important;
+  border-radius: 5%;
+}
+
+.whats-hot-container {
+  height: 100%;
+  width: 60%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.whats-hot-pictures-container {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whats-hot-pictures-container > * {
+  justify-self: center;
+}

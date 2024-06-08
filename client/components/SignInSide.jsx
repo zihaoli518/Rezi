@@ -73,6 +73,15 @@ export default function SignInSide() {
         } else {
           // successful login credentials - navigate to 
           navigate("/landing")
+          console.log('about to fetch GET landing')
+          // fetch('/landing', {
+          //   method: "GET",
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //     Accept: 'application/json, text/plain',
+          //   },
+          // })
+          // window.location.href = '/landing';
         }
         setOpen(false);
       })

@@ -87,6 +87,11 @@ app.post('/api/login', userMiddlewares.logIn, (req, res) => {
   return res.status(200).send(res.locals.logInData)
 })
 
+// app.get('/landing', (req, res) => {
+//   console.log('get /landing complete')
+//   return res.status(200).sendFile(path.join(__dirname, '../client/components/landingTemplate/public/index.html'));
+// });
+
 
 // app.post('/api/exportMon', convertTeamFormatMiddlewares.exportMon, (req, res) => {
 //   console.log('/api/exportMon complete')

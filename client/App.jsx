@@ -1,4 +1,5 @@
 // importing dependencies
+// react 
 import React from 'react';
 import {
   BrowserRouter,
@@ -6,23 +7,40 @@ import {
   Routes,
   Router
 } from "react-router-dom";
-
+// mui 
+import { createTheme, ThemeProvider} from '@mui/material/styles';
+// components 
 import SignInSide from './components/SignInSide.jsx';
 import SignUp from './components/SignUp.jsx';
-// import LandingPage from './components/landingPage/LandingPage.js'
+import LandingPage from './components/LandingPage.jsx';
+
+// theme 
+let theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#5e7d9a',
+    },
+    secondary: {
+      main: '#dab47a',
+    },
+  },
+});
 
 
 function App() {
 
 
   return (
-    <div className="app">
-      <Routes>
-        <Route exact path="/" element={<SignInSide />} />
-        <Route exact path="/login" element={<SignInSide />} />
-        <Route path="/signup" element={<SignUp />} />
-        {/* <Route path="/landing" element={<LandingPage />} /> */}
-      </Routes>
+    <div className="app" style={{ width: '100%' }}>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/login" element={<SignInSide />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/landing" element={<LandingPage />} />
+        </Routes>
+      </ThemeProvider>
     </div>
   );
 }

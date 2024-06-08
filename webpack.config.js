@@ -118,6 +118,10 @@ const TerserPlugin = require('terser-webpack-plugin');
           target: "http://localhost:3000",
           secure: false,
         },
+        "/landing": {
+          target: "http://localhost:3000",
+          secure: false,
+        },
       },
     },
 
