@@ -12,7 +12,8 @@ const userMiddlewares = {};
 
 userMiddlewares.signUp = (req, res, next) => {
   console.log('sign up time bitches!');
-  const { username, password, type } = req.body;
+  let { username, password, type } = req.body;
+  if (type==='restaurant') username = req.body.email;
   bcrypt.hash(password, saltFactor, async (err, hash) => {
     if (err) {
       return next(err);
@@ -42,8 +43,7 @@ userMiddlewares.signUp = (req, res, next) => {
   }
 
   async function signUpUser(username, hash, type) {
-    let table = '';
-    if (type === 'customer') table = 'users_customer';
+    let table = (type === 'customer') ? 'users_customer' : 'users_restaurant';
     const signupQuery = `INSERT INTO ${table} (username, password) VALUES ($1, $2)`;
     db.query(signupQuery, [username, hash]);
   }

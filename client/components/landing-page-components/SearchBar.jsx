@@ -29,12 +29,12 @@ export default function SearchBar() {
 
   
   
-  const setDate = (newDate) => {
-    console.log(newDate);
-    const newParams = {...searchParams};
-    newParams.date = newDate
-    setSearchParams(newParams);
-  }
+  const setParam = (newParam, paramType) => {
+    console.log(newParam, paramType);
+    const newParamsState = {...searchParams};
+    newParamsState[paramType] = newParam;
+    setSearchParams(newParamsState);
+  } 
   
   React.useEffect(() => {
     const intervalId = setInterval(() => {
@@ -63,12 +63,12 @@ export default function SearchBar() {
       >
         <div className='search-bar-container'>
 
-          <DatePicker label="📅 Date" onChange={(newValue) => setDate(newValue)} sx={{backgroundColor: 'white', }} variant="filled" />
+          <DatePicker label="📅 Date" onChange={(newValue) => setParam(newValue, 'date')} sx={{backgroundColor: 'white', }} variant="filled" />
           {/* <DateField label="Date" enableAccessibleFieldDOMStructure /> */}
 
-          <TextField id="outlined-basic" label="⏱️ Time" sx={{backgroundColor: 'white', }} variant="filled"  />
-          <TextField id="outlined-basic" label="📍 Place" sx={{backgroundColor: 'white', }} variant="filled"  />
-          <TextField id="outlined-basic" label="🔢 People" sx={{backgroundColor: 'white', }} variant="filled"  />
+          <TextField id="outlined-basic" onChange={(newValue) => setParam(newValue, 'time')} label="⏱️ Time" sx={{backgroundColor: 'white', }} variant="filled"  />
+          <TextField id="outlined-basic" onChange={(newValue) => setParam(newValue, 'place')} label="📍 Place" sx={{backgroundColor: 'white', }} variant="filled"  />
+          <TextField id="outlined-basic" onChange={(newValue) => setParam(newValue, 'people')} label="🔢 People" sx={{backgroundColor: 'white', }} variant="filled"  />
 
           <Button variant="contained">Search</Button>
         </div>

@@ -13,6 +13,8 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 import SignInSide from './components/SignInSide.jsx';
 import SignUp from './components/SignUp.jsx';
 import LandingPage from './components/LandingPage.jsx';
+import AddRestaurntPage from './components/AddRestaurntPage.jsx';
+
 
 // theme 
 let theme = createTheme({
@@ -39,6 +41,8 @@ function App() {
           <Route exact path="/login" element={<SignInSide />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/landing" element={<LandingPage />} />
+          <Route path="/add-restaurant" element={<AddRestaurntPage />} />
+
         </Routes>
       </ThemeProvider>
     </div>
