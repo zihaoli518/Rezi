@@ -1,5 +1,12 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .background-image-search-bar {
@@ -44,4 +51,20 @@ body {
 
 .whats-hot-pictures-container > * {
   justify-self: center;
+}
+
+
+
+.search-bar-sticky-top {
+  // height: 10%;
+}
+
+.background-search-bar-sticky-top {
+
+}
+
+
+.search-results-container {
+  border: 1px solid #d3d3d3; /* Light grey border */
+  border-radius: 8px; /* Rounded corners */
 }

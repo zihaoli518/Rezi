@@ -14,7 +14,8 @@ import SignInSide from './components/SignInSide.jsx';
 import SignUp from './components/SignUp.jsx';
 import LandingPage from './components/LandingPage.jsx';
 import AddRestaurntPage from './components/AddRestaurntPage.jsx';
-
+import FloatingNavigator from './components/FloatingNavigator.jsx';
+import RestaurantSearchResults from './components/RestaurantSearchResults.jsx';
 
 // theme 
 let theme = createTheme({
@@ -34,16 +35,19 @@ function App() {
 
 
   return (
-    <div className="app" style={{ width: '100%' }}>
+    <div className="app" style={{ width: '100%', height: '100%'}}>
       <ThemeProvider theme={theme}>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
+          <Route path="/landing" element={<LandingPage />} />
           <Route exact path="/login" element={<SignInSide />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/landing" element={<LandingPage />} />
           <Route path="/add-restaurant" element={<AddRestaurntPage />} />
+          <Route path="/restaurant-search-results" element={<RestaurantSearchResults />} />
+
 
         </Routes>
+        < FloatingNavigator />
       </ThemeProvider>
     </div>
   );

@@ -13,12 +13,36 @@ const restaurantControllers = {};
 restaurantControllers.registerRestaurantData = (req, res, next) => {
   if (req.body.type === 'customer' || res.locals.signUpData.status === "username already exists") return next();
 
-  const { email, restaurantName, cuisineType, address } = req.body;
+  const { email, restaurantName, cuisineType, address, pictureUrl, phoneNumber, openingHours, websiteUrl, description, ownerName, capacity, specialFeatures, menuUrl, deliveryService, reservationRequired } = req.body;
 
   let table = 'restaurant_data';
 
-  const signupQuery = `INSERT INTO ${table} (username, name, cuisine, address) VALUES ($1, $2, $3, $4)`;
-  db.query(signupQuery, [email, restaurantName, cuisineType, address])
+  const signupQuery = `
+    INSERT INTO ${table} 
+    (username, name, cuisine, address, picture_url, phone_number, opening_hours, website_url, description, owner_name, capacity, special_features, menu_url, delivery_service, reservation_required) 
+    VALUES 
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+  `;
+
+  const values = [
+    email, 
+    restaurantName, 
+    cuisineType, 
+    address, 
+    pictureUrl,
+    phoneNumber, 
+    openingHours, 
+    websiteUrl, 
+    description, 
+    ownerName, 
+    capacity, 
+    specialFeatures, 
+    menuUrl, 
+    deliveryService, 
+    reservationRequired
+  ];
+
+  db.query(signupQuery, values)
     .then(() => {
       return next()
     })

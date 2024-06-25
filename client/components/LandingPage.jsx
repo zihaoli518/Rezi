@@ -29,6 +29,9 @@ import TopNavBar from './landing-page-components/TopNavBar.jsx';
 import SearchBar from './landing-page-components/SearchBar.jsx';
 import WhatsHot from './landing-page-components/WhatsHot.jsx';
 
+import withAnimation from './hoc/withAnimation.jsx';
+
+
 
 function Copyright(props) {
   return (
@@ -46,7 +49,7 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function LandingPage() {
+function LandingPage() {
 
   const [statusMessage, setStatusMessage] = React.useState(null);
   const [open, setOpen] = React.useState(false);
@@ -135,7 +138,7 @@ export default function LandingPage() {
           square
           style={{ width: "100%", height: "30%", maxHeight: "30%" }}
         >
-          <SearchBar style={{ width: "100%" }} />
+          <SearchBar type='landing' style={{ width: "100%" }} />
 
         </Grid>
 
@@ -163,3 +166,5 @@ export default function LandingPage() {
     </ThemeProvider>
   );
 }
+
+export default withAnimation(LandingPage);

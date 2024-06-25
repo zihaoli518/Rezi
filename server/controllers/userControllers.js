@@ -7,10 +7,10 @@ const bcrypt = require('bcrypt');
 const saltFactor = 10;
 const jwt = require('jsonwebtoken')
 
-const userMiddlewares = {};
+const userControllers = {};
 
 
-userMiddlewares.signUp = (req, res, next) => {
+userControllers.signUp = (req, res, next) => {
   console.log('sign up time bitches!');
   let { username, password, type } = req.body;
   if (type==='restaurant') username = req.body.email;
@@ -50,7 +50,7 @@ userMiddlewares.signUp = (req, res, next) => {
 };
 
 
-userMiddlewares.logIn = (req, res, next) => {
+userControllers.logIn = (req, res, next) => {
   const { username, type } = req.body;
   const query = `SELECT password FROM users_${type} WHERE username = '${username}'`;
   // query database to see if that username exists
@@ -94,7 +94,7 @@ userMiddlewares.logIn = (req, res, next) => {
 };
 
 
-userMiddlewares.getUserData = (req, res, next) => {
+userControllers.getUserData = (req, res, next) => {
   console.log('inside middleware getUserData,', req.cookies);
   const username = req.params.username;
   // const decodedUsername = jwt.verify(req.cookies.PokemonTeamBuilder, process.env.JWT_SECRET);
@@ -108,5 +108,5 @@ userMiddlewares.getUserData = (req, res, next) => {
 }
 
 
-module.exports = userMiddlewares;
+module.exports = userControllers;
 

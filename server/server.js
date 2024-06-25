@@ -5,9 +5,10 @@ const cors = require('cors');
 
 const PORT = 3000; 
 
-// const fetchMiddlewares = require('./controllers/fetchMiddlewares.js');
-const userMiddlewares = require('./controllers/userMiddlewares.js');
+// const fetchControllers = require('./controllers/fetchControllers.js');
+const userControllers = require('./controllers/userControllers.js');
 const restaurantControllers = require('./controllers/restaurantControllers.js');
+const searchControllers = require('./controllers/searchControllers.js');
 
 const cookieParser = require("cookie-parser");
 
@@ -77,15 +78,21 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.post('/api/signup', userMiddlewares.signUp, restaurantControllers.registerRestaurantData, (req, res, next) => {
+app.post('/api/signup', userControllers.signUp, restaurantControllers.registerRestaurantData, (req, res, next) => {
   console.log('/api/signup complete', res.locals)
   return res.status(200).send(res.locals.signUpData)
 })
 
-app.post('/api/login', userMiddlewares.logIn, (req, res) => {
+app.post('/api/login', userControllers.logIn, (req, res) => {
   console.log('/api/login complete');
   console.log(res.locals)
   return res.status(200).send(res.locals.logInData)
+});
+
+app.get('/api/search', searchControllers.search, (req, res) => {
+  console.log('/api/search complete');
+  console.log(res.locals)
+  return res.status(200).send(res.locals)
 });
 
 // app.post('/api/signup-restaurant', restaurantControllers.signUp, (req, res) => {
@@ -106,7 +113,7 @@ app.post('/api/login', userMiddlewares.logIn, (req, res) => {
 // });
 
 
-// app.post('/api/exportMon', convertTeamFormatMiddlewares.exportMon, (req, res) => {
+// app.post('/api/exportMon', convertTeamFormatControllers.exportMon, (req, res) => {
 //   console.log('/api/exportMon complete')
 //   return res.status(200).send({exportedSet: res.locals.exportedSet})
 // })

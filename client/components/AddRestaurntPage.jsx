@@ -63,7 +63,7 @@ export default function AddRestaurntPage() {
     websiteUrl: '',
     description: '',
     ownerName: '',
-    capacity: '',
+    capacity: 0,
     specialFeatures: '',
     menuUrl: '',
     deliveryService: false,
@@ -86,6 +86,7 @@ export default function AddRestaurntPage() {
     setOpen(true);
   };
 
+  
   
   const handleSubmit = (event) => {
     handleOpen();
@@ -148,6 +149,14 @@ export default function AddRestaurntPage() {
     <Typography component="h1" variant="h5">
       Add Restaurant
     </Typography>
+
+    <Button
+        variant="contained"
+        sx={{ mt: 3, mb: 2 }}
+      >
+        Back to Landing Page
+    </Button>
+
     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
@@ -170,7 +179,7 @@ export default function AddRestaurntPage() {
             id="cuisineType"
             label="Cuisine Type"
             name="cuisineType"
-            autoComplete="family-name"
+            autoComplete="cuisineType"
             value={formValues.cuisineType}
             onChange={handleInputChange}
           />
@@ -184,6 +193,18 @@ export default function AddRestaurntPage() {
             name="address"
             autoComplete="address"
             value={formValues.address}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            required
+            fullWidth
+            id="pictureUrl"
+            label="Picture Url"
+            name="pictureUrl"
+            autoComplete="pictureUrl"
+            value={formValues.pictureUrl}
             onChange={handleInputChange}
           />
         </Grid>
