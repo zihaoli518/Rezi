@@ -16,6 +16,7 @@ import LandingPage from './components/LandingPage.jsx';
 import AddRestaurntPage from './components/AddRestaurntPage.jsx';
 import FloatingNavigator from './components/FloatingNavigator.jsx';
 import RestaurantSearchResults from './components/RestaurantSearchResults.jsx';
+import UserProfilePage from './components/UserProfilePage.jsx';
 
 // theme 
 let theme = createTheme({
@@ -44,6 +45,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/add-restaurant" element={<AddRestaurntPage />} />
           <Route path="/restaurant-search-results" element={<RestaurantSearchResults />} />
+          
+          <Route path="/user-profile" element={<UserProfilePage />} />
 
 
         </Routes>

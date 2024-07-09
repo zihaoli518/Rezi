@@ -16,6 +16,8 @@ const actions = [
   { icon: <PersonAddIcon />, name: 'Sign Up', path: '/signup' },
   { icon: <RestaurantIcon />, name: 'Add Restaurant', path: '/add-restaurant' },
   { icon: <ManageSearchIcon />, name: 'Search Results', path: '/restaurant-search-results' },
+  { icon: <HomeIcon />, name: 'User Profile', path: '/user-profile' },
+
 ];
 
 export default function FloatingNavigator() {
